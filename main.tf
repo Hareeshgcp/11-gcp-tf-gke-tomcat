@@ -16,7 +16,7 @@ resource "google_container_cluster" "primary" {
     }
 }
 
-resource "null_resource" "kubectl" {
+resource "null_resource" "gcloud" {
   provisioner "local-exec" {
     command = "kubectl create deployment tomcatinfra --image=saravak/tomcat8"
   }
