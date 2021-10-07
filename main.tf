@@ -13,16 +13,12 @@ resource "google_container_cluster" "primary" {
 
   provisioner "local-exec" {
     command = "gcloud container clusters get-credentials ${var.project_name} --zone ${var.project_zone}"
-    }
-}
-
-resource "null_resource" "gcloud" {
+  }
+  
   provisioner "local-exec" {
     command = "kubectl create deployment tomcatinfra --image=saravak/tomcat8"
   }
-}
-
-resource "null_resource" "kubectl" {
+  
   provisioner "local-exec" {
     command = "kubectl expose deployment tomcatinfra --port=8080 --target-port=8080 --type LoadBalancer"
   }
